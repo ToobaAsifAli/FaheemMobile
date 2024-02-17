@@ -1,114 +1,341 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="utf-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Calci</title>  
-    <script type = text/javascript></script>  
-    <style></style>  
-</head>  
-<body>  
-    <center>  
-   <h1>Simple Calculator</h1>  
-   <table>  
-       <tr><input id = "display"></tr>  
-       <tr><td> <button onclick = fun(0)>0</button></td>  
-           <td> <button onclick = fun("(")>(</button></td>  
-           <td> <button onclick = fun(")")>)</button></td>  
-           <td></td>  
-           <td> <button onclick = C()>C</button></td>  
-           <td> <button onclick = B()>B</button></td>  
-       </tr>  
-       <tr><td> <button onclick = fun(7)>7</button></td>  
-           <td> <button onclick = fun(8)>8</button></td>  
-           <td> <button onclick = fun(9)>9</button></td>  
-           <td></td>  
-           <td> <button onclick = fun("+")>+</button></td>  
-           <td> <button onclick = fun("-")>-</button></td>  
-       </tr>  
-       <tr><td> <button onclick = fun(6)>6</button></td>  
-           <td> <button onclick = fun(5)>5</button></td>  
-           <td> <button onclick = fun(4)>4</button></td>  
-           <td></td>  
-           <td><button onclick = fun("*")>*</button></td>  
-            <td><button onclick = fun("/")>/</button></td>  
-       </tr>  
-       <tr><td> <button onclick = fun(1)>1</button></td>  
-           <td> <button onclick = fun(2)>2</button></td>  
-           <td> <button onclick = fun(3)>3</button></td>  
-           <td></td>  
-           <td> <button onclick = fun(".")>.</button></td>  
-           <td> <button onclick = res()>=</button></td>  
-       </tr>  
-    </table>  
-    </center>  
-</body>  
-</html>  
-<script type = text/javascript>  
-        function fun(a)  
-        {  
-            document.getElementById("display").value+=a;  
-        }  
-        function C()  
-        {  
-            document.getElementById("display").value = "";  
-        }  
-        function B()  
-        {  
-            var y = document.getElementById("display").value;  
-            document.getElementById("display").value = y.slice(0, y.length-1);  
-        }  
-        function res()  
-        {   
-            var a = document.getElementById("display").value;  
-            document.getElementById("display").value=a+"="+eval(a);  
-        }  
-    </script>  
-<style>  
-        table {  
-            background-color: brown;  
-            border: 1px solid black;  
-            table-layout: fixed;  
-            border: 1px solid black;  
-            border-spacing: 10px;  
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);  
-            border-radius: 10px;  
-        }  
-        button{  
-            padding: 16px;  
-            border-radius: 8px;  
-        }  
-        button:hover{  
-            background-color: black;  
-            color: white;   
-              
-        }  
-        button:active{  
-            transform: scale(0.98);  
-            box-shadow:3px 2px 22px 1px rgba(0, 0, 0, 0.24);  
-        }  
-        #display{  
-            width:290px;  
-            height:40px;  
-            margin: 10px 0;  
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);  
-            border-radius: 10px;  
-        }  
-        #display:hover{  
-            background-color: black;  
-            color: white;  
-        }  
-        body{  
-            background-color: black;  
-        }  
-        h1{  
-            color: white;  
-        }  
-        body:hover{  
-            background-color: floralwhite;  
-        }  
-         body:hover h1{  
-            color: black;  
-              
-        }  
-    </style>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashier Register</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    header {
+        background-color:#eeeeee;
+        border-radius: 10px;
+        /* color: #333; */
+        padding: 60px 0;
+        /* text-align: center; */
+        margin-top: 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    nav {
+        background-color: #333;
+        padding: 10px 0;
+        text-align: center;
+        text-align: left;
+        /* size:medium; */
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        margin: 0 10px;
+    }
+
+    nav a:hover {
+        color: #fff;
+    }
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .register {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 32px;
+        margin: 0;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .input-field {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    label {
+        color: #666;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: calc(100% - 20px);
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+        outline: none;
+        border-color: #4caf50;
+    }
+
+    .delete-btn {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .delete-btn:hover {
+        background-color: #e64a19;
+    }
+
+    /* Print Styles */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .printable, .printable * {
+            visibility: visible;
+        }
+        .printable {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+
+    /* Hide Receipt from Main Page */
+    #printableReceipt {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <a class="navbar-brand" href="#" style="margin-left: 70px; font-size: 20px;">Faheem Cashier Calculator</a>
+    <a class="navbar-brand" href="#" style="text-align: right; margin-left: 640px; font-size: 16px;">Contact Us: 0316 - 4608707</a>
+    <!-- <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a> -->
+</nav>   
+<header>
+    <address style="color: #333; margin-left: 20px; font-size: 50px; font-family:'Times New Roman', Times, serif;">Faheem Mobile & Computer Repairing</address>
+
+			<p style="color: #333;font-family: 'Times New Roman', Times, serif;margin-left: 20px; font-size: 30px;">
+
+				St Nagar, Lahore, Punjab 54000, Pakistan<br>
+				
+				<abbr title="Phone"></abbr> 0316 - 4608707
+            </p>
+</header>
+
+
+
+<div class="container">
+    <div class="register">
+        <div class="input-field">
+            <label for="product">Product:</label>
+            <input type="text" id="product">
+        </div>
+        <div class="input-field">
+            <label for="price">Price:</label>
+            <input type="number" id="price" step="0.01">
+        </div>
+        <div class="input-field">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" value="1">
+        </div>
+        <div class="input-field">
+            <button class="btn" onclick="addItem()">Add Item</button>
+        </div>
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+        </table>
+        <hr>
+        <div class="input-field">
+            <label for="total">Total:</label>
+            <input type="text" id="total" readonly>
+        </div>
+        <div class="input-field">
+            <label for="payment">Payment:</label>
+            <input type="number" id="payment" step="0.01">
+        </div>
+        <div class="input-field">
+            <button class="btn" onclick="calculateChange()">Calculate Change</button>
+        </div>
+        <div class="input-field">
+            <label for="change">Change:</label>
+            <input type="text" id="change" readonly>
+        </div>
+        <div class="input-field">
+            <button class="btn" onclick="printReceipt()">Print Receipt</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Faheem Mobile & Computer Repairing. All rights reserved.</p>
+</footer>
+
+<div class="printable" id="printableReceipt">
+    <h2>Receipt</h2>
+    <table id="printItemsTable">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="printItemsBody"></tbody>
+    </table>
+    <hr>
+    <div class="input-field">
+        <label for="printTotal">Total:</label>
+        <input type="text" id="printTotal" readonly>
+    </div>
+    <div class="input-field">
+        <label for="printPayment">Payment:</label>
+        <input type="text" id="printPayment" readonly>
+    </div>
+    <div class="input-field">
+        <label for="printChange">Change:</label>
+        <input type="text" id="printChange" readonly>
+    </div>
+</div>
+
+<script>
+    let total = 0;
+
+    function addItem() {
+        const product = document.getElementById('product').value;
+        const price = parseFloat(document.getElementById('price').value);
+        const quantity = parseInt(document.getElementById('quantity').value);
+
+        if (!isNaN(price) && quantity > 0) {
+            const itemTotal = price * quantity;
+            total += itemTotal;
+            document.getElementById('total').value = total.toFixed(2);
+
+            const table = document.getElementById('itemsBody');
+            const printTable = document.getElementById('printItemsBody');
+            const row = table.insertRow();
+            const printRow = printTable.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            const printCell1 = printRow.insertCell(0);
+            const printCell2 = printRow.insertCell(1);
+            const printCell3 = printRow.insertCell(2);
+            const printCell4 = printRow.insertCell(3);
+            cell1.innerHTML = product;
+            cell2.innerHTML = price.toFixed(2);
+            cell3.innerHTML = quantity;
+            cell4.innerHTML = itemTotal.toFixed(2);
+            printCell1.innerHTML = product;
+            printCell2.innerHTML = price.toFixed(2);
+            printCell3.innerHTML = quantity;
+            printCell4.innerHTML = itemTotal.toFixed(2);
+
+            // Clear input fields
+            document.getElementById('product').value = '';
+            document.getElementById('price').value = '';
+            document.getElementById('quantity').value = 1;
+        }
+    }
+
+    function removeItem(btn) {
+        const row = btn.parentNode.parentNode;
+        const price = parseFloat(row.cells[1].innerHTML); // Extract price from cell content
+        const quantity = parseInt(row.cells[2].innerHTML);
+        const itemTotal = price * quantity;
+        total -= itemTotal;
+        document.getElementById('total').value = total.toFixed(2);
+        row.parentNode.removeChild(row);
+    }
+
+    function calculateChange() {
+        const payment = parseFloat(document.getElementById('payment').value);
+
+        if (!isNaN(payment)) {
+            const change = payment - total;
+            document.getElementById('change').value = change.toFixed(2);
+
+            // Set print values
+            document.getElementById('printTotal').value = total.toFixed(2);
+            document.getElementById('printPayment').value = payment.toFixed(2);
+            document.getElementById('printChange').value = change.toFixed(2);
+        }
+    }
+
+    function printReceipt() {
+        document.getElementById('printableReceipt').style.display = 'block';
+        window.print();
+        document.getElementById('printableReceipt').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
